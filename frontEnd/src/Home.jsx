@@ -36,7 +36,7 @@ const Home = () => {
                         <td> {student.name} </td>
                         <td> {student.email} </td>
                         <td>
-                            <button>Read</button>
+                            <Link to={`/read/${student.id}`} >Read</Link>
                             <button>Edit</button>
                             <button>Delete</button>
                         </td>

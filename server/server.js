@@ -15,6 +15,7 @@ const db = mysql.createConnection({
 
 })
 
+// read all student
 app.get('/',(req,res)=>{
     const sql = "SELECT * FROM student";
     db.query(sql,(err,result)=>{
@@ -23,6 +24,20 @@ app.get('/',(req,res)=>{
     })
 })
 
+
+// read with specific id
+app.get('/read/:id',(req,res)=>{
+    const sql = "SELECT * FROM student WHERE id = ?";
+    const id = req.params.id;
+
+    db.query(sql,id,(err,result)=>{
+        if(err) return res.json({Message: "Erron in server" })
+        return res.json(result);
+    })
+})
+
+
+// create new student
 app.post('/student' , (req, res)=>{
     const sql = "INSERT INTO student (`name`,`email`) VALUES(?,?)"
     const values = [
