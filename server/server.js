@@ -51,6 +51,30 @@ app.post('/student' , (req, res)=>{
     
 })
 
+// update
+
+app.put('/update/:id',(req,res)=>{
+    const sql = 'UPDATE student SET `name`=? , `email`=? WHERE id =?'
+    const id = req.params.id;
+
+    db.query(sql, [req.body.name, req.body.email, id] , (err,result)=>{
+        if(err) return res.json(err)
+        return res.json(result)
+    } )
+})
+
+//delete
+
+app.delete('/delete/:id', (req,res)=>{
+    const sql = "DELETE FROM student Where ID =?"
+    const id = req.params.id
+
+    db.query(sql,id,(err,result)=>{
+        if(err) return res.json(err)
+        return res.json(result)
+    })
+})
+
 
 app.listen(8081,()=>{
     console.log("Listening");

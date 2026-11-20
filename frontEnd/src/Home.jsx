@@ -13,6 +13,16 @@ const Home = () => {
         .then(res =>  setdata(res.data))
         .catch(err => console.log(err) )      
     }, [])
+
+
+    const handleDelete = (id) =>{
+        axios.delete('http://localhost:8081/delete/'+id)
+        .then(res =>  location.reload())
+        .catch(err => console.log(err) )  
+
+    } 
+
+
     
   return (
     <div>
@@ -37,8 +47,8 @@ const Home = () => {
                         <td> {student.email} </td>
                         <td>
                             <Link to={`/read/${student.id}`} >Read</Link>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <Link to={`/edit/${student.id}`} >Edit</Link>
+                            <button onClick={()=> handleDelete(student.id)} >Delete</button>
                         </td>
                     </tr>
                 })}

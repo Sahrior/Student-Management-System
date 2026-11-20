@@ -5,7 +5,6 @@ import { Link, useParams } from 'react-router-dom'
 const Read = () => {
 
     const {id} = useParams();
-
     const [student, setstudent] = useState({})
 
     useEffect(() => {
@@ -13,7 +12,6 @@ const Read = () => {
       .then(res => setstudent(res.data[0]))
       .catch(err => console.log(err))
     }, [id])
-
 
     return (
       <div>
